@@ -1,13 +1,11 @@
 angular.module('primeiraApp').component('contentHeader', {
   bindings: {
     name: '@',
-    small: '@',
-
+    small: '@'
   },
   template: `
-  <section class="content-header">
-    <h1>{{ $crtl.name }} <small>{{ $crtl.small }}</small></h1>
-  </section>
-
+    <section class="content-header">
+      <h1>{{$ctrl.name}}</h1> <small>{{$ctrl.small}}</small>
+    </section>
   `
 })
