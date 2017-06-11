@@ -6,13 +6,13 @@ BillingCycle.updateOptions({new: true, runValidators: true})
 
 BillingCycle.after('post', sendErrorsOrNext).after('put', sendErrorsOrNext)
 
-function sendErrorsOrNext(req, res, next){
-  const bundle = res.local.bundle
+function sendErrorsOrNext(req, res, next) {
+  const bundle = res.locals.bundle
 
-  if (bundle.errors) {
+  if(bundle.errors) {
     var errors = parseErrors(bundle.errors)
     res.status(500).json({errors})
-  }else {
+  } else {
     next()
   }
 }
@@ -23,13 +23,14 @@ function parseErrors(nodeRestfulErrors) {
   return errors
 }
 
-BillingCycle.route('count', function(req, res, next){
+BillingCycle.route('count', function(req, res, next) {
   BillingCycle.count(function(error, value) {
     if(error) {
       res.status(500).json({errors: [error]})
-    }else {
+    } else {
       res.json({value})
     }
   })
 })
+
 module.exports = BillingCycle
